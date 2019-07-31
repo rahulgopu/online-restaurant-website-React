@@ -57,8 +57,7 @@ import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
                 <RenderDish dish={props.dish} />
                 <RenderComments comments={props.dish.comments} />
             </div>
-         </div>   
-                  
+         </div>             
         )
     }
 export default Dishdetail;
