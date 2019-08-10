@@ -4,6 +4,7 @@ import { Card, CardImg, CardBody, CardTitle, CardText,
         ModalHeader, Row, Col, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
     function RenderDish({dish}) {
 		return(
@@ -36,7 +37,6 @@ import { LocalForm, Control, Errors } from 'react-redux-form';
 
         handleSubmit(values) {
             this.toggleModal();
-            alert("Current State is: " + JSON.stringify(values.author));
             this.props.addComment( this.props.dishId, values.rating, values.author, values.comment );
         }
 
@@ -154,6 +154,25 @@ import { LocalForm, Control, Errors } from 'react-redux-form';
 
     const Dishdetail = (props) => {
         
+        if(props.isLoading) {
+            return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+            );
+        }
+        else if (props.errMess) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+
         if(props.dish == null)
         {
             return(<div></div>)
